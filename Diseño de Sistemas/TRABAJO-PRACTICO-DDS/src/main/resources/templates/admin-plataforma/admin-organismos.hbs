@@ -1,0 +1,69 @@
+{{#partial "contenido"}}
+    <h1 class="text-center">CONFIGURACION ORGANISMOS DE CONTROL</h1>
+
+    <div class="col-md-9 offset-md-9">
+        <a class="btn btn-primary" href="/app/organismos/carga-masiva">Subir Datos CSV</a>
+    </div>
+
+    <div style="max-width: 900px; margin: 0 auto; padding: 30px;">
+        <table class="table" border="groove">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre Completo</th>
+                <th style="text-align: center;"> Usuario</th>
+                <th style="text-align: center;"> Servicios</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each organismos}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">{{this.representante.usuario.username}}</td>
+                    <td align="center">
+                        <a class="btn btn-primary" href="/app/organismos/{{this.id}}/servicios">Ver Servicios</a>
+                    </td>
+                    <td align="center">
+                        <a class="btn text-primary" href="/app/organismos/{{this.id}}/edit">Editar</a>
+                    </td>
+                    <td align="center">
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#confirmEdit{{this.id}}">Eliminar</a>
+
+                    <div class="modal fade" id="confirmEdit{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="confirmEditLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="confirmEditLabel">Confirmación</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Seguro que quieres eliminar el organismo de control {{this.nombre}}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <a class="btn btn-danger" href="/app/organismos/{{this.id}}/delete">Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-9 offset-md-9">
+        <a class="btn btn-primary" href="/app/organismos/create">Agregar Nuevo Organismo de Control</a>
+    </div>
+
+{{/partial}}
+{{> templates/base}}

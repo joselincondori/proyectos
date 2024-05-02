@@ -1,0 +1,19 @@
+{{#partial "contenido"}}
+<h1 class="d-flex justify-content-center">Agregar servicios</h1>
+<div class="container-fluid d-flex justify-content-center m-4">
+    <form action="/app/organismos/servicios/agregar" method="post" class="w-75 d-flex flex-column align-items-center">
+        <div class="form-group mt-4 w-25">
+            <label for="servicio">Seleccione el servicio que quiere agregar:</label><br>
+            <select class="form-control w-100" name="servicio">
+            {{#each servicios}}
+            <option value="{{this.getId}}">{{this.getNombre}}</option>
+            {{/each}}
+            </select>
+        </div>
+        <input type="text" name="organismo" value="{{organismo.id}}" class="d-none">
+        <input type="submit" class="btn btn-primary" value="Agregar">
+    </form>
+</div>
+{{/partial}}
+
+{{> templates/base}}

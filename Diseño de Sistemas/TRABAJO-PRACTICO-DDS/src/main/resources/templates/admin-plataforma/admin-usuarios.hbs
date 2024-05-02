@@ -1,0 +1,33 @@
+{{#partial "contenido"}}
+    <h1 class="text-center">ADMINISTRACION DE USUARIOS</h1>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 50px;">
+        <table class="table" style="width: 100%; max-width: 100%; table-layout: auto;">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre Usuario</th>
+                <th style="text-align: center;"> Activo </th>
+                <th style="text-align: center;"> Validar </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each usuarios}}
+                <tr>
+                    <td align="center">{{this.username}}</td>
+                    <td align="center">{{this.esValido}}</td>
+                    <td align="center">
+                        <form method="POST" action="/app/admin-plataforma/usuarios/{{#if this.esValido}}desactivar{{else}}activar{{/if}}" style="display: inline;">
+                            <input type="text" value="{{this.id}}" class="d-none" name="id">
+                            <button type="submit" class="btn {{#if this.esValido}}btn-danger{{else}}btn-success{{/if}}" data-toggle="modal" data-target="#confirmEdit{{this.id}}">
+                                {{#if this.esValido}}DESACTIVAR{{else}}ACTIVAR{{/if}}
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/partial}}
+{{> templates/base}}

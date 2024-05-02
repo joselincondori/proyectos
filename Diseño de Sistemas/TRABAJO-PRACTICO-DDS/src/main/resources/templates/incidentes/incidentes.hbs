@@ -1,0 +1,122 @@
+{{#partial "contenido"}}
+    <h1 class="d-flex justify-content-center">Incidentes de la comunidad: {{comunidad.nombre}}</h1>
+    <div class="container-fluid d-flex justify-content-around align-items-center m-4">
+        <div class="m-3">
+            <form action="/app/comunidades/{{comunidad.id}}/incidentes" class="m-3">
+            <fieldset>
+            <legend>Seleccione un filtro:</legend>
+            <div>
+                <input type="radio" id="cerrados" name="filtro" value="cerrados" checked />
+                <label for="cerrados">Cerrados</label>
+            </div>
+
+            <div>
+                <input type="radio" id="abiertos" name="filtro" value="abiertos" />
+                <label for="abiertos">Abiertos</label>
+            </div>
+            </fieldset>
+            <input type="submit" value="Aplicar Filtros" class="btn btn-secondary">
+        </form>
+
+        <form action="/app/comunidades/{{comunidad.id}}/incidentes" class="m-3">
+            <input type="submit" value="Quitar Filtros" class="btn btn-secondary">
+        </form>
+        </div>
+    </div>
+
+    {{!-- tabla incidentes --}}
+    <div class="container d-flex justify-content-center">
+        <table class="table table-bordered table-striped table m-3 w-75">
+        <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Establecimiento</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each incidentes }}
+            <tr>
+                <td>{{this.getNombreServicio}}</td>
+                <td>{{this.getNombreEstablecimiento}}</td>
+                <td>{{this.getEstado}}</td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{this.getId}}">
+                    Detalles
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal{{this.getId}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Detalles de Incidente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-bordered table-striped table">
+                                <tbody>
+                                    <tr>
+                                        <td>Comunidad</td>
+                                        <td>{{this.getNombreComunidad}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Servicio</td>
+                                        <td>{{this.getNombreServicio}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Establecimiento</td>
+                                        <td>{{this.getNombreEstablecimiento}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha y Hora Apertura</td>
+                                        <td>{{this.getFechaHoraApertura}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha y Hora Cierre</td>
+                                        <td>{{this.getFechaHoraCierre}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Creador</td>
+                                        <td>{{this.getNombreCreador}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cerrado por</td>
+                                        <td>{{this.getNombreAnalizador}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estado</td>
+                                        <td>{{this.getEstado}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Comentarios</td>
+                                        <td>{{this.getObservaciones}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {{#if miembroUser}}
+                            {{#if this.estaAbierto}}
+                                <div class="modal-footer">
+                                    <form action="/app/incidentes/cerrar" method="post">
+                                        <input type="text" name="incidenteId" value="{{this.id}}" class="d-none">
+                                        <input type="submit" value="Cerrar Incidente" class="btn btn-danger">
+                                    </form>
+                                </div>
+                            {{/if}}
+                        {{/if}}
+                        </div>
+                    </div>
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    </div>
+{{/partial}}
+{{> templates/base}}

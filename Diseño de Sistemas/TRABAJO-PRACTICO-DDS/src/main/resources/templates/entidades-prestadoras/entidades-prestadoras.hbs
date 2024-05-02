@@ -1,0 +1,41 @@
+{{#partial "contenido"}}
+
+    <h1 class="text-center">Lista de Entidades Prestadoras</h1>
+
+    <div class="col-md-9 offset-md-9">
+        <a class="btn btn-primary" href="/app/entidades-prestadoras/carga-masiva-entidades">Subir Datos CSV</a>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <table class="table" border="groove">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre Completo</th>
+                <th style="text-align: center;"> Usuario</th>
+                <th style="text-align: center;"> Entidades Controladas</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each entidades-prestadoras}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">{{this.representante.nombre}}</td>
+                    <td align="center">
+                        <a class="btn btn-primary" href="/app/entidades-prestadoras/{{this.id}}/entidades">Ver Entidades Controladas</a>
+                    </td>
+                </tr>
+
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-9 offset-md-9">
+
+        <a class="btn btn-primary" href="/app/entidades-prestadoras/create">Agregar Nueva Entidad Prestadora</a>
+
+    </div>
+
+{{/partial}}
+{{> templates/base}}

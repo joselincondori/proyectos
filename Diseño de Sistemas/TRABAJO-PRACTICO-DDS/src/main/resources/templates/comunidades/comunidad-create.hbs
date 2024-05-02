@@ -1,0 +1,16 @@
+{{#partial "contenido" }}
+    <h1 class="text-center">Nueva Comunidad</h1>
+    <div class="container">
+        <form method="POST" {{#if comunidad}} action="/app/comunidades/{{comunidad.id}}" {{else}} action="/app/comunidades" {{/if}}>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre</label>
+                    <input name="nombre" class="form-control" {{#if comunidad}} value="{{comunidad.nombre}}" {{/if}} placeholder="Nombre">
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

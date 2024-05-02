@@ -1,0 +1,136 @@
+{{#partial "contenido" }}
+    <h1 class="text-center">Comunidad: {{comunidad.nombre}}</h1>
+    <input name="idComunidad" type="hidden" value="{{comunidad.id}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form method="POST" {{#if comunidad}} action="/app/comunidades/{{comunidad.id}}" {{else}} action="/app/comunidades" {{/if}}>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label>Nombre</label>
+                            <input name="nombre" class="form-control" {{#if comunidad}} value="{{comunidad.nombre}}" {{/if}} placeholder="Nombre">
+                        </div>
+                        <h4 class="text-center"> Miembros </h4>
+                        <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+                            <table class="table" border="groove">
+                                <thead>
+                                <tr >
+                                    <th>Nombre</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each miembros}}
+                                    <tr>
+                                        <td>{{ this.persona.nombre }}</td>
+                                        <td align="center">
+                                            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#confirmEdit{{this.id}}-1">Eliminar</a>
+
+                                            <div class="modal fade" id="confirmEdit{{this.id}}-1" tabindex="-1" role="dialog" aria-labelledby="confirmEditLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmEditLabel">Confirmación</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Seguro que quieres eliminar el miembro {{this.persona.nombre}} de la comunidad?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            <div>
+                                                                <form action="/app/comunidades/miembro/delete" method="post">
+                                                                <input type="text" name="miembroId" value="{{this.id}}" class="d-none">
+                                                                <input type="text" name="comunidadId" value="{{comunidad.id}}" class="d-none">
+                                                                <input type="submit" value="Eliminar Miembro" class="btn btn-danger">
+                                                            </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td align="center">
+                                            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#confirmEdit{{this.id}}-2">Dar Privilegios</a>
+
+                                            <div class="modal fade" id="confirmEdit{{this.id}}-2" tabindex="-1" role="dialog" aria-labelledby="confirmEditLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmEditLabel">Confirmación</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Seguro que quieres darle privilegios de la comunidad al miembro {{this.persona.nombre}}?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            <form action="/app/comunidades/miembro/dar-admin" method="post">
+                                                                <input type="text" name="miembroId" value="{{this.id}}" class="d-none">
+                                                                <input type="submit" value="Dar Privilegios" class="btn btn-primary">
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <h4 class="text-center"> Administradores de comunidad </h4>
+                        <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+                            <table class="table" border="groove">
+                                <thead>
+                                <tr >
+                                    <th>Nombre</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each administradores}}
+                                    <tr>
+                                        <td>{{ this.persona.nombre }}</td>
+                                        <td align="center">
+                                            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#confirmEdit{{this.id}}-3">Quitar Privilegios</a>
+
+                                            <div class="modal fade" id="confirmEdit{{this.id}}-3" tabindex="-1" role="dialog" aria-labelledby="confirmEditLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmEditLabel">Confirmación</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Seguro que quieres quitar los privilegiosde la comunidad al miembro {{this.persona.nombre}}?
+                                                        </div>
+                                                        <form action="/app/comunidades/miembro/sacar-admin" method="post">
+                                                            <input type="text" name="miembroId" value="{{this.id}}" class="d-none">
+                                                            <input type="text" name="comunidadId" value="{{comunidad.id}}" class="d-none">
+                                                            <input type="submit" value="Quitar Privilegios" class="btn btn-danger">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+{{> templates/base }}

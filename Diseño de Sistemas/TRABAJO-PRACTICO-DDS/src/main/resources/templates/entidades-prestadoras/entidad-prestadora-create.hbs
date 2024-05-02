@@ -1,0 +1,35 @@
+{{#partial "contenido" }}
+    <h1 class="text-center">Nueva Entidad Prestadora</h1>
+    <div class="container">
+        <form method="POST" {{#if entidad}} action="/app/entidades-prestadoras/{{entidad.id}}/{{entidad.representante.id}}/{{entidad.representante.usuario.id}}" {{else}} action="/app/entidades-prestadoras" {{/if}}>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre</label>
+                    <input name="nombre" class="form-control" {{#if entidad}} value="{{entidad.nombre}}" {{/if}} placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Nombre del Representante</label>
+                    <input name="nombreRepresentante" class="form-control" {{#if entidad}} value="{{entidad.representante.nombre}}" {{/if}} placeholder="Nombre Representante">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Apellido del Representante</label>
+                    <input name="apellidoRepresentante" class="form-control" {{#if entidad}} value="{{entidad.representante.apellido}}" {{/if}} placeholder="Apellido Representante">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Mail Representante</label>
+                    <input name="mailRepresentante" class="form-control" {{#if entidad}} value="{{entidad.representante.mail}}" {{/if}} placeholder="Mail Representante">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Telofono Representante</label>
+                    <input name="telefonoRepresentante" class="form-control" {{#if entidad}} value="{{entidad.representante.telefono}}" {{/if}} placeholder="Telefono Representante">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Usuario</label>
+                    <input name="usuario" class="form-control" {{#if entidad}} value="{{entidad.representante.usuario.username}}" {{/if}} placeholder="Usuario">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

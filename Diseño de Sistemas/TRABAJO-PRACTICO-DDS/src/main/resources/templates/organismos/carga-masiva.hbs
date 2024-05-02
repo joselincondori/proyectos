@@ -1,0 +1,44 @@
+{{#partial "contenido" }}
+    <div class="text-center">
+        <h1>Carga Masiva de Organismos de Control</h1>
+        <div class="mt-5"></div>
+        <form action="/app/organismos/carga-masiva" method="post" enctype="multipart/form-data" id="myForm" onsubmit="return setFileName()">
+            <input type="file" name="archivoCSV" accept=".csv" onchange="setFileName(this)">
+            <input type="hidden" name="nombreArchivo" id="nombreArchivo" value="">
+            <input type="submit" value="Cargar archivo" class="btn btn-primary">
+        </form>
+    </div>
+    <div class="mt-5"></div>
+    <div class="text-center">
+        <h3>Archivos en proceso:</h3>
+        <div class="container d-flex justify-content-center">
+            <table class="table table-bordered table-striped table m-3 w-50" id="tablaArchivos">
+                <tr>
+                    <th>Nombre del archivo</th>
+                    <th>Estado</th>
+                </tr>
+                {{#each archivosEnProceso}}
+                    <tr>
+                        <td>{{this.nombre}}</td>
+                        <td>{{this.estado}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function setFileName(input) {
+            var fullPath = input.value;
+            if (fullPath) {
+                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                var filename = fullPath.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
+                document.getElementById('nombreArchivo').value = filename;
+            }
+        }
+    </script>
+{{/partial}}
+{{> templates/base }}

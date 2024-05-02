@@ -1,0 +1,108 @@
+{{#partial "contenido"}}
+<style>
+body{
+	background-color: rgb(216, 237, 244)
+}
+h1{
+	font-size:30px;
+	text-align: center;
+	background-color: #5DADE2; /* Cambia el color de fondo a tu elección */
+    padding: 5px; /* Añade un espacio alrededor del texto dentro del recuadro */
+	}
+h2{
+    font-size:20px;
+    text-align: center;
+    }
+form{
+    text-align: center;
+}
+h3 a{
+    font-size:11.5px;
+    text-align: center;
+    text-decoration:underline;
+    position: absolute;
+    left:678px;
+    top: 52%;
+    }
+h4{
+    text-align: right;
+    font-size: 18px;
+    position: absolute;
+    left:1260.3px;
+    top: 75%;
+    }
+h5{
+    font-size:17px;
+    text-align: right;
+    position: absolute;
+    left:1273px;
+    top: 78.8%;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2980B9  ;
+    color: white;
+    text-decoration: none;
+    border: 2px solid #154360;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+h5 a {
+    color: white; /* Cambia este valor al color deseado */
+    text-decoration: none; /* Para quitar el subrayado del enlace */
+}
+
+h6  {
+    text-align: center; /* Centrar el contenido horizontalmente */
+    position: absolute;
+    left:700px;
+    top: 55.5%;
+}
+
+.boton-iniciar-sesion {
+    font-size: 17px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2980B9;
+    color: white;
+    text-decoration: none;
+    border: 2px solid #154360;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+input[type="text"], input[type="Usuario"] {
+        width: 15%; /* Establece el ancho al 100% del contenedor */
+    }
+</style>
+
+
+
+<body>
+    <br><br>
+    <h1>Ingresá a tu cuenta</h1> <br><br>
+
+    <form>
+        <h2> Usuario</h2>
+        <input type="text" name="Usuario" id="username" placeholder="Ingrese su usuario" required> <br><br>
+        <h2> Contraseña</h2>
+        <input type="password"placeholder="Ingrese su contraseña"required>
+        <h3><a href="recuperar">¿Olvidaste tu usuario o contraseña?</a></h3>
+        <h6>
+            <input type="submit" value="Iniciar Sesión" class="boton-iniciar-sesion">
+        </h6>
+
+    </form>
+
+    <br><br>
+    <h4> ¿No tenés cuenta?</h4>
+    <h5><a href="registrar">Registrarse</a></h5>
+</body>
+{{/partial}}
+{{> templates/inicio_sesion/modelo}}
+

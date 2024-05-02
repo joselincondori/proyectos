@@ -1,0 +1,37 @@
+{{#partial "contenido"}}
+
+    <h1 class="text-center">Lista de Sugerencias</h1>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 50px;">
+        <table class="table" style="width: 100%; max-width: 100%; table-layout: auto;">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Entidad </th>
+                <th style="text-align: center;"> Establecimiento </th>
+                <th style="text-align: center;"> Servicio </th>
+                <th style="text-align: center;"> Fecha y Hora Creacion </th>
+                <th style="text-align: center;"> </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each sugerencias}}
+                <tr>
+                    <td align="center">{{this.getNombreEntidad}}</td>
+                    <td align="center">{{this.getNombreEstablecimiento}}</td>
+                    <td align="center">{{this.getNombreServicio}}</td>
+                    <td align="center">{{this.fechaHoraEnvio}}</td>
+                    <td align="center">
+                        <form action="/app/incidentes/sugerencias" method="post">
+                            <input type="text" name="sugerenciaId" class="d-none" value="{{this.id}}">
+                            <input type="submit" value="Ver" class="btn btn-primary">
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+{{/partial}}
+{{> templates/base}}

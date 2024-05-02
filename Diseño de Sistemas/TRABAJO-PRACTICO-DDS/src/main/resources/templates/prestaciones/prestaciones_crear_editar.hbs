@@ -1,0 +1,33 @@
+{{#partial "contenido" }}
+    {{#if prestacion}}
+    <h1 class="text-center">Nueva Prestacion del Establecimiento: {{prestacion.establecimiento.nombre}}</h1>
+    {{else}}
+    <h1 class="text-center">Nueva Prestacion del Establecimiento: {{establecimiento.nombre}}</h1>
+    {{/if}}
+    <div class="container">
+        <form method="POST" {{#if prestacion}} action="/app/prestaciones/{{prestacion.id}}/edit" {{else}} action="/app/prestaciones/crear" {{/if}}>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="descripcion">Descripcion</label>
+                    <input name="descripcion" class="form-control" {{#if prestacion}} value="{{prestacion.descripcion}}" {{/if}} placeholder="Descripcion">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="servicio">Servicio</label>
+                    <select class="form-control" name="servicio">
+                        {{#if prestacion}}
+                        <option value="{{prestacion.servicio.id}}" selected>{{prestacion.servicio.nombre}}</option>
+                        {{/if}}
+                        {{#each servicios}}
+                        <option value="{{this.getId}}">{{this.getNombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                {{#if establecimiento}}
+                <input type="text" name="establecimientoId" class="d-none" value="{{establecimiento.id}}">
+                {{/if}}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Guardar">
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

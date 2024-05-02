@@ -1,0 +1,104 @@
+{{#partial "contenido"}}
+<style>
+body{
+	background-color: rgb(216, 237, 244)
+}
+h1{
+	font-size:30px;
+	text-align: left;
+	background-color: #5DADE2; /* Cambia el color de fondo a tu elección */
+    padding: 5px; /* Añade un espacio alrededor del texto dentro del recuadro */
+	}
+
+h2{
+    font-size:15px;
+    text-align: left;
+    }
+
+    input[type="text"], input[type="password"] {
+        width: 12%;
+        padding: 2px;
+        margin-bottom: 7px;
+    }
+
+
+
+    .input-container input {
+        display: inline-block; /* O display: inline; */
+        margin-right: 5%; /* Espacio entre los inputs (ajusta según tu preferencia) */
+      }
+    #mostrarPassword {
+        position: absolute;
+        left:121px;
+        top: 67.3%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .mostrarContrasenia{
+        position: absolute;
+        left:140px;
+        top: 65.6%;
+        font-size: 0.9em;
+    }
+
+    h3{
+        font-size:17px;
+        text-align: right;
+        position: absolute;
+        left:1273px;
+        top: 71.8%;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #2980B9  ;
+        color: white;
+        text-decoration: none;
+        border: 2px solid #154360;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        }
+        h3 a {
+            color: white; /* Cambia este valor al color deseado */
+            text-decoration: none; /* Para quitar el subrayado del enlace */
+        }
+
+    input[type="text"], input[type="Usuario"] {
+        width: 15%; /* Establece el ancho al 100% del contenedor */
+    }
+
+</style>
+
+<body>
+<br><br>
+        <h1>Creá tu cuenta</h1><br>
+    <form>
+        <h2> Datos personales</h2>
+        <div class="input-container">
+            <input type="text" name="Nombre" id="nombre" placeholder="Nombre" required>
+            <input type="text" name="Apellido" id="apellido" placeholder="Apellido" required>
+        </div>
+        <div class="input-container">
+            <input type="text" name="Mail" id="mail" placeholder="Mail" required>
+            <input type="text" name="Telefono" id="telefono" placeholder="Telefono" required>
+        </div>
+<br>
+        <h2> Crea un nombre de usuario</h2>
+        <input type="text" name="Usuario" id="username" placeholder="Usuario" required>
+<br>
+<br>
+        <h2> Crea una contraseña</h2>
+        <div class="input-container">
+            <input type="password" name="Contraseña" id="contrasenia" placeholder="Contraseña" required>
+            <input type="password" name="Contraseña" id="contrasenia" placeholder="Confirmar contraseña" required><br>
+        </div>
+    </form>
+
+    <input type="checkbox" id="mostrarPassword" >
+    <p class="mostrarContrasenia"> Mostrar contraseña</p>
+
+    <h3><a href="portal">Registrarse</a></h3>
+
+</body>
+
+{{/partial}}
+{{> templates/inicio_sesion/modelo}}

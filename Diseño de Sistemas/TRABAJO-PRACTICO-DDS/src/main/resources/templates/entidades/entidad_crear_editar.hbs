@@ -1,0 +1,61 @@
+{{#partial "contenido" }}
+    <h1 class="text-center">Entidad: {{entidad.nombre}}</h1>
+    <div class="container">
+        <form method="POST" {{#if entidad}} action="/app/entidades/{{entidad.id}}/edit" {{else}} action="/app/entidades/crear" {{/if}}>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" {{#if entidad}} value="{{entidad.nombre}}" {{/if}} placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="tipoEntidad">Tipo Entidad</label>
+                    <select class="form-control" name="tipoEntidad">
+                        {{#if entidad}}
+                        <option value="{{entidad.getIdTipoEntidad}}" selected>{{entidad.getNombreTipoEntidad}}</option>
+                        {{/if}}
+                        {{#each tiposEntidad}}
+                        <option value="{{this.getId}}">{{this.getNombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="provincia">Provincia</label>
+                    <select class="form-control" name="provincia" id="provincias-select">
+                        {{#if entidad.provincia}}
+                        <option value="{{entidad.provincia.getId}}" selected>{{entidad.provincia.getNombre}}</option>
+                        {{/if}}
+                        {{#each provincias}}
+                        <option value="{{this.getId}}">{{this.getNombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="municipio">Municipio</label>
+                    <select class="form-control" name="municipio" id="municipios-select">
+                        {{#if entidad.municipio}}
+                        <option value="{{entidad.municipio.getId}}" selected>{{entidad.municipio.getNombre}}</option>
+                        {{/if}}
+                        <option value="" selected></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="localidad">Localidad</label>
+                    <select class="form-control" name="localidad" id="localidades-select">
+                        {{#if entidad.localidad}}
+                        <option value="{{entidad.localidad.getId}}" selected>{{entidad.localidad.getNombre}}</option>
+                        {{/if}}
+                        <option value="" selected></option>
+                    </select>
+                </div>
+                
+                <input type="submit" class="btn btn-primary" value="Guardar">
+            </div>
+        </form>
+    </div>
+{{/partial}}
+
+{{#partial "scripts"}}
+<script src="/js/ubicacion.js"></script>
+{{/partial}}
+
+{{> templates/base }}

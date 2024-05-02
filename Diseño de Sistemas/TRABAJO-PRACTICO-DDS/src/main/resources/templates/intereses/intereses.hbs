@@ -1,0 +1,52 @@
+{{#partial "contenido"}}
+    <h1 class="text-center">Entidades de interes de {{usuario}}</h1>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 50px;">
+        <table class="table" style="width: 100%; max-width: 100%; table-layout: auto;">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre</th>
+                <th style="text-align: center;"> Descripcion </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each entidadesInteres}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">{{this.descripcion}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-9 offset-md-9">
+        <a class="btn btn-primary" href="/app/intereses/entidades/agregar">Agregar Nueva Entidad</a>
+    </div>
+
+    <h1 class="text-center">Servicios de interes de {{usuario}}</h1>
+    <div style="max-width: 1000px; margin: 0 auto; padding: 50px;">
+        <table class="table" style="width: 100%; max-width: 100%; table-layout: auto;">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre</th>
+                <th style="text-align: center;"> Descripcion </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each serviciosInteres}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">{{this.descripcion}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-9 offset-md-9">
+        <a class="btn btn-primary" href="/app/intereses/servicios/agregar">Agregar Nuevo Servicio</a>
+    </div>
+{{/partial}}
+{{> templates/base}}

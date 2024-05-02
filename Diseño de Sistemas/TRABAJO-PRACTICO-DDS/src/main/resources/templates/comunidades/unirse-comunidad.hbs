@@ -1,0 +1,31 @@
+{{#partial "contenido"}}
+    <h1 class="text-center">Comunidades</h1>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 50px;">
+        <table class="table" style="width: 100%; max-width: 100%; table-layout: auto;">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre Comunidad</th>
+                <th style="text-align: center;"> </th>
+                <th style="text-align: center;"> </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each comunidades}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">
+                        <a class="btn btn-success" href="/app/comunidades/{{this.id}}/unirse">Unirse a comunidad</a>
+                    </td>
+                    <td align="center">
+                        <a class="btn btn-primary" href="/app/comunidades/{{this.id}}/miembros">Ver Miembros</a>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-info" onclick="history.back()">Atrás</button>
+{{/partial}}
+{{> templates/base}}

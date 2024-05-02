@@ -1,0 +1,60 @@
+{{#partial "contenido"}}
+    <h1 class="text-center">Comunidades a las que pertenece : {{username}}</h1>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 50px;">
+        <table class="table" style="width: 100%; max-width: 100%; table-layout: auto;">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre Comunidad</th>
+                <th style="text-align: center;"> </th>
+                <th style="text-align: center;"> </th>
+                <th style="text-align: center;"> </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each comunidades}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">
+                        <a class="btn btn-primary" href="/app/comunidades/{{this.id}}/miembros">Ver Miembros</a>
+                    </td>
+                    <td align="center">
+                        <a class="btn btn-primary" href="/app/comunidades/{{this.id}}/incidentes">Ver Incidentes</a>
+                    </td>
+
+                    <td align="center">
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#confirmEdit{{this.id}}">Salir de Comunidad</a>
+
+                        <div class="modal fade" id="confirmEdit{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="confirmEditLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmEditLabel">Confirmación</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Seguro que quieres salir de la comunidad {{this.nombre}}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <a class="btn btn-danger" href="/app/comunidades/{{this.id}}/salir">Salir</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-9 offset-md-9">
+        <a class="btn btn-primary" href="/app/comunidades/unirse">Unirse a una nueva comunidad</a>
+    </div>
+
+{{/partial}}
+{{> templates/base}}

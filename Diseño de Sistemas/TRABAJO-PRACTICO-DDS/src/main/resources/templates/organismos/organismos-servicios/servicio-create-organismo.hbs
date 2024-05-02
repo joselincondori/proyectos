@@ -1,0 +1,20 @@
+{{#partial "contenido" }}
+    <h1 class="text-center">Nuevo Servicio del Organismo: {{organismo.nombre}}</h1>
+    <div class="container">
+        <form method="POST" {{#if servicio}} action="/servicios/{{servicio.id}}" {{else}} action="/servicios-organismo/{{organismo.id}}" {{/if}}>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre</label>
+                    <input name="nombre" class="form-control" {{#if servicio}} value="{{servicio.nombre}}" {{/if}} placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Descripcion</label>
+                    <input name="descripcion" class="form-control" {{#if servicio}} value="{{servicio.descripcion}}" {{/if}} placeholder="Descripcion">
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

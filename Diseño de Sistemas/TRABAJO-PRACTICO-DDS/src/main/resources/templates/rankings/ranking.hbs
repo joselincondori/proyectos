@@ -1,0 +1,25 @@
+{{#partial "contenido"}}
+    <h1 class="d-flex justify-content-center">{{ranking.descripcion}}</h1>
+    {{!-- tabla del ranking --}}
+    <div class="container d-flex justify-content-center">
+        <table class="table table-bordered table-striped table m-3 w-75">
+        <thead>
+            <tr>
+                <th>Posición</th>
+                <th>Entidades</th>
+                <th>Puntaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each ranking.ranking}}
+            <tr>
+                <td>{{this.posicion}}</td>
+                <td>{{this.entidad.nombre}}</td>
+                <td>{{this.puntaje}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    </div>
+{{/partial}}
+{{> templates/base}}

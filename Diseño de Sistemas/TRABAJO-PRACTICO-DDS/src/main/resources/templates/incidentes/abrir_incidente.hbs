@@ -1,0 +1,53 @@
+{{#partial "head"}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+{{/partial}}
+
+{{#partial "contenido"}}
+<h1 class="d-flex justify-content-center">Abrir Nuevo Incidente</h1>
+<div class="container-fluid d-flex justify-content-center m-4">
+    <form action="/app/incidentes/abrir" method="post" class="w-75 d-flex flex-column align-items-center">
+        <div class="form-group mt-4 w-25">
+            <label for="comunidades">Seleccione las comunidades a las cuales quiere reportar:</label><br>
+            <select class="js-basic-multiple form-control w-100" name="comunidades" multiple="multiple">
+            {{#each comunidades}}
+            <option value="{{this.getId}}">{{this.getNombre}}</option>
+            {{/each}}
+            </select>
+        </div>
+        {{#if error}}
+        <div><p style="color: red;">{{error}}</p></div>
+        {{/if}}
+        <div class="form-group mt-4 w-25">
+            <label for="entidad">Seleccione la entidad donde ocurrio:</label><br>
+            <select class="js-basic-single form-control w-100" name="entidad" id="entidades-select">
+                {{#each entidades}}
+                <option value="{{this.getId}}">{{this.getNombre}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group mt-4 w-25">
+            <label for="establecimiento">Seleccione el establecimiento donde ocurrio:</label><br>
+            <select class="js-basic-single w-100" name="establecimiento" id="establecimientos-select"></select>
+        </div>
+        
+        <div class="form-group mt-4 w-25">
+            <label for="servicio">Seleccione el servicio averiado:</label><br>
+            <select class="js-basic-single w-100" name="prestacion" id="servicios-select"></select>
+        </div>
+        <div class="form-group mt-4 w-25 h-50">
+            <label for="comentarios">Comentarios adicionales:</label><br>
+            <input type="text-area" name="comentarios" class="w-100 h-100">
+        </div>
+        <div class="form-group mt-4 h-25">
+            <input type="submit" value="Siguiente" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+{{/partial}}
+
+{{#partial "scripts"}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="/js/abrir_incidente.js"></script>
+{{/partial}}
+
+{{> templates/base}}

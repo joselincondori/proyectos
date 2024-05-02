@@ -1,0 +1,41 @@
+{{#partial "contenido" }}
+    {{#if establecimiento}}
+    <h1 class="text-center">Nuevo Establecimiento de la Entidad: {{establecimiento.entidad.nombre}}</h1>
+    {{else}}
+    <h1 class="text-center">Nuevo Establecimiento de la Entidad: {{entidad.nombre}}</h1>
+    {{/if}}
+    <div class="container">
+        <form method="POST" {{#if establecimiento}} action="/app/establecimientos/{{establecimiento.id}}/edit" {{else}} action="/app/establecimientos/crear" {{/if}}>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre</label>
+                    <input name="nombre" class="form-control" {{#if establecimiento}} value="{{establecimiento.nombre}}" {{/if}} placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="tipoEstablecimiento">Tipo Establecimiento</label>
+                    <select class="form-control" name="tipoEstablecimiento">
+                        {{#if establecimiento}}
+                        <option value="{{establecimiento.getIdTipoEstablecimiento}}" selected>{{establecimiento.getNombreTipoEstablecimiento}}</option>
+                        {{/if}}
+                        {{#each tiposEstablecimiento}}
+                        <option value="{{this.getId}}">{{this.getNombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="latitud">Latitud</label>
+                    <input name="latitud" class="form-control" {{#if establecimiento}} value="{{establecimiento.ubicacion.latitud}}" {{/if}} placeholder="Latitud">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="longitud">Longitud</label>
+                    <input name="longitud" class="form-control" {{#if establecimiento}} value="{{establecimiento.ubicacion.longitud}}" {{/if}} placeholder="Longitud">
+                </div>
+                {{#if entidad}}
+                <input type="text" name="entidadId" class="d-none" value="{{entidad.id}}">
+                {{/if}}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Guardar">
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

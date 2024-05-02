@@ -1,0 +1,41 @@
+{{#partial "contenido" }}
+    <h1 class="text-center">Organismo de Control: {{organismo.nombre}}</h1>
+    <div class="container">
+        <form method="POST" {{#if organismo}} action="/app/organismos/{{organismo.id}}/{{organismo.representante.id}}/{{organismo.representante.usuario.id}}" {{else}} action="/app/organismos" {{/if}}>
+            <div class="form-row mb-3">
+                <div class="form-group col-md-6">
+                    <label>Nombre</label>
+                    <input name="nombre" class="form-control" {{#if organismo}} value="{{organismo.nombre}}" {{/if}} placeholder="Nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Nombre Representante</label>
+                    <input name="nombreRepresentante" class="form-control" {{#if organismo}} value="{{organismo.representante.nombre}}" {{/if}} placeholder="Nombre Representante">
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="form-group col-md-6">
+                    <label>Apellido Representante</label>
+                    <input name="apellidoRepresentante" class="form-control" {{#if organismo}} value="{{organismo.representante.apellido}}" {{/if}} placeholder="Apellido Representante">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Mail Representante</label>
+                    <input name="mailRepresentante" class="form-control" {{#if organismo}} value="{{organismo.representante.mail}}" {{/if}} placeholder="Mail Representante">
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="form-group col-md-6">
+                    <label>Telofono Representante</label>
+                    <input name="telefonoRepresentante" class="form-control" {{#if organismo}} value="{{organismo.representante.telefono}}" {{/if}} placeholder="Telefono Representante">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Usuario</label>
+                    <input name="usuario" class="form-control" {{#if organismo}} value="{{organismo.representante.usuario.username}}" {{/if}} placeholder="Usuario">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

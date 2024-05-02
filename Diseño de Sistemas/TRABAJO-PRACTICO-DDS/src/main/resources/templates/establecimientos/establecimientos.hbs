@@ -1,0 +1,28 @@
+{{#partial "contenido"}}
+
+    <h1 class="text-center">Lista de Establecimientos</h1>
+
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <table class="table" border="groove">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre </th>
+                <th style="text-align: center;"> Tipo Establecimiento</th>
+                <th style="text-align: center;"> Entidad</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each entidades}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">{{this.tipoEstablecimiento.nombre}}</td>
+                    <td align="center">{{this.entidad.nombre}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+{{/partial}}
+{{> templates/base}}

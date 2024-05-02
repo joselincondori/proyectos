@@ -1,0 +1,25 @@
+{{#partial "contenido"}}
+    <h1 class="text-center">Lista de Servicios</h1>
+
+    <div style="max-width: 1000px; margin: 0 auto; padding: 50px;">
+        <table class="table" style="width: 100%; max-width: 100%; table-layout: auto;">
+            <thead>
+            <tr class="table-primary">
+                <th style="text-align: center;"> Nombre</th>
+                <th style="text-align: center;"> Descripcion </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#each servicios}}
+                <tr>
+                    <td align="center">{{this.nombre}}</td>
+                    <td align="center">{{this.descripcion}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+{{/partial}}
+{{> templates/base}}

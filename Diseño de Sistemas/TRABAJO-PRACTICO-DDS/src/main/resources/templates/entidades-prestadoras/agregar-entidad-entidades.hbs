@@ -1,0 +1,19 @@
+{{#partial "contenido"}}
+    <h1 class="d-flex justify-content-center">Agregar Entidades</h1>
+    <div class="container-fluid d-flex justify-content-center m-4">
+        <form action="/app/entidades-prestadoras/entidades/agregar" method="post" class="w-75 d-flex flex-column align-items-center">
+            <div class="form-group mt-4 w-25">
+                <label for="entidad">Seleccione la entidad que quiere agregar:</label><br>
+                <select class="form-control w-100" name="entidad">
+                    {{#each entidades}}
+                        <option value="{{this.getId}}">{{this.getNombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <input type="text" name="entidadPrestadora" value="{{entidadPrestadora.id}}" class="d-none">
+            <input type="submit" class="btn btn-primary" value="Agregar">
+        </form>
+    </div>
+{{/partial}}
+
+{{> templates/base}}

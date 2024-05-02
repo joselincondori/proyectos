@@ -1,0 +1,63 @@
+{{#partial "contenido" }}
+    <h1 class="text-center">Editar servicios del organismo: {{organismo.nombre}}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form method="POST" {{#if organismo}} action="/organismos/{{organismo.id}}" {{else}} action="/organismos" {{/if}}>
+                    <div class="form-row">
+                        <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+                            <table class="table" border="groove">
+                                <thead>
+                                <tr >
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#each servicios}}
+                                    <tr>
+                                        <td>{{ this.nombre }}</td>
+                                        <td>{{this.descripcion}}</td>
+                                        <td align="center">
+                                            <a class="btn text-primary" href="/servicios/{{this.id}}/edit">Editar</a>
+                                        </td>
+                                        <td align="center">
+                                            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#confirmEdit{{this.id}}">Eliminar</a>
+
+                                            <div class="modal fade" id="confirmEdit{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="confirmEditLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="confirmEditLabel">Confirmación</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Seguro que quieres eliminar el servicio {{this.nombre}}?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            <a class="btn btn-danger" href="/servicios/{{this.id}}/delete">Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 offset-md-9">
+        <a class="btn btn-primary" href="/servicios-organismo/{{organismo.id}}/servicio-create">Agregar Nuevo Servicio</a>
+    </div>
+{{/partial}}
+{{> templates/base }}
