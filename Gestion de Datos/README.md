@@ -1,4 +1,4 @@
-# Trabajo Practico de la materia Gestion de Datos
+# Trabajo Práctico de la materia Gestión de Datos
 
 ## Integrantes: 
 - Micaela Gobbi
